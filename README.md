@@ -6,6 +6,7 @@ This repository is a case study project primarily developed using JavaScript, CS
 
 ```
 case-study/
+├── .env
 ├── agents_old/
 │   └── part_specialist/
 │       └── webscraper.py
@@ -14,8 +15,10 @@ case-study/
 ├── src/
 │   ├── index.js
 │   ├── reportWebVitals.js
+│   └── api/
+│   └── components/
 │   └── backend/
-│       ├── README.md
+│       ├── runner.py
 │       └── customer_service_agent/
 │           └── sub_agents/
 │               ├── appliance_agent/
@@ -26,11 +29,17 @@ case-study/
 |               │   └── tools.py
 │               └── product_specialist/
 │                   └── agent.py
-|               │   └── tools.py
+|               │   └── d tools.py
 ├── Original_README.md
+├── README.md
+├── app.py
 ```
 
 ## Getting Started
+
+This case study specifically asked for a deepseek implementation so a deepseek API key will be needed and should be added to the .env file as 
+
+DEEPSEEK_API_KEY= "YOUR_API_KEY"
 
 ### Prerequisites
 
