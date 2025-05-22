@@ -20,10 +20,13 @@ case-study/
 │           └── sub_agents/
 │               ├── appliance_agent/
 │               │   └── agent.py
+|               │   └── tools.py
 │               ├── help_agent/
-│               │   └── tools.py
+│               │   └── agent.py
+|               │   └── tools.py
 │               └── product_specialist/
 │                   └── agent.py
+|               │   └── tools.py
 ├── Original_README.md
 ```
 
