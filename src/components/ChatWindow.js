@@ -55,7 +55,7 @@ function ChatWindow() {
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type a message..."
+              placeholder="Welcome to PartSelect! How can I help you?"
               onKeyPress={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   handleSend(input);

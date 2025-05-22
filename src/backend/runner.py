@@ -20,21 +20,18 @@ initial_state = {
 }
 
 def save_state_to_file(session_id, state):
-    with open(f"state_{session_id}.json", "w") as f:
+    with open(f"chat_logs/state_{session_id}.json", "w") as f:
         json.dump(state, f, indent=4)
 
 def load_state_from_file(session_id):
     try:
-        with open(f"state_{session_id}.json", "r") as f:
+        with open(f"chat_logs/state_{session_id}.json", "r") as f:
             return json.load(f)
     except FileNotFoundError:
         return initial_state.copy()
 
-# Ensure state file exists
-try:
-    open(f"state_{SESSION_ID}.json", "r").close()
-except FileNotFoundError:
-    save_state_to_file(SESSION_ID, initial_state)
+# # Ensure state file exists
+# save_state_to_file(SESSION_ID, initial_state)
 
 # ----------- Chat Function ------------
 
@@ -44,7 +41,9 @@ async def chat_with_agent(user_message):
         state = load_state_from_file(SESSION_ID)
     except Exception as e:
         print(f"Error loading state: {e}")
+        print("Creating a new interaction log from scratch.")
         state = initial_state.copy()
+        save_state_to_file(SESSION_ID, state)
     interaction_history = state.get('interaction_history', [])
 
     stateful_session = await session_service_stateful.create_session(

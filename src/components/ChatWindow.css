@@ -17,7 +17,8 @@
 .assistant-message-container {
   display: flex;
   flex-direction: column;
-  max-width: 100%;
+  width: fit-content;
+  max-width: 800px;
   margin: 4px 0;
 }
 
@@ -45,7 +46,7 @@
 .user-message {
   align-self: flex-end;
   font-size: 13px;
-  background-color: #1b3875;
+  background-color: #457577;
   color: #ffffff;
   border-top-right-radius: 0;
   text-align: left;
@@ -53,7 +54,7 @@
 
 .assistant-message {
   align-self: flex-start;
-  background-color: #f6f6f6;
+  background-color: #F2F2F2;
   border-top-left-radius: 0;
   color: #000000;
   padding: 14px;
@@ -104,7 +105,7 @@
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #121212;
+  background-color: #457577;
   color: white;
   cursor: pointer;
   font-size: 13px;
