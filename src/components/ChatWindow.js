@@ -25,15 +25,19 @@ function ChatWindow() {
 
   const handleSend = async (input) => {
     if (input.trim() !== "") {
-      // Set user message
       setMessages(prevMessages => [...prevMessages, { role: "user", content: input }]);
       setInput("");
 
-      // Call API & set assistant message
-      const newMessage = await getAIMessage(input);
-      setMessages(prevMessages => [...prevMessages, newMessage]);
+      // Call the real backend API
+      try {
+        const response = await getAIMessage(input);
+        setMessages(prevMessages => [...prevMessages, { role: "assistant", content: response }]);
+      } catch (error) {
+        setMessages(prevMessages => [...prevMessages, { role: "assistant", content: "Sorry, there was an error connecting to the agent." }]);
+      }
     }
   };
+
 
   return (
       <div className="messages-container">

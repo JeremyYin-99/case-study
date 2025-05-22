@@ -13,9 +13,6 @@ model = LiteLlm(
     api_key=API_KEY
 )
 
-
-
-
 appliance_agent = Agent(
     name="appliance_agent",
     model=model,

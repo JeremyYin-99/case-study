@@ -1,6 +1,6 @@
 const API_BASE_URL = 'http://localhost:8000';
 
-export const sendMessageToAgent = async (message) => {
+export const getAIMessage = async (message) => {
     try {
         const response = await fetch(`${API_BASE_URL}/chat`, {
             method: 'POST',
@@ -16,7 +16,7 @@ export const sendMessageToAgent = async (message) => {
         }
 
         const data = await response.json();
-        return data.response; // Assuming the backend sends back a 'response' field
+        return data.response;
     } catch (error) {
         console.error('Error sending message to agent:', error);
         // You might want to re-throw the error, or return a default value,
