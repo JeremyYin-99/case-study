@@ -1,0 +1,12 @@
+{
+    "interaction_history": [
+        {
+            "role": "user",
+            "message": "Can you add this part to my cart?"
+        },
+        {
+            "role": "agent",
+            "message": "To assist you, I need the product number or model number of the part you want to add to your cart. Could you please provide that?"
+        }
+    ]
+}

@@ -1,8 +1,6 @@
 from src.backend.customer_service_agent.sub_agents.appliance_agent.agent import appliance_agent
 from src.backend.customer_service_agent.sub_agents.help_agent.agent import help_agent
-from src.backend.customer_service_agent.sub_agents.order_agent.agent import order_agent
-from src.backend.customer_service_agent.sub_agents.parts_agent.agent import parts_agent
-from src.backend.customer_service_agent.sub_agents.lookup_agent.agent import lookup_agent
+from src.backend.customer_service_agent.sub_agents.product_specialist.agent import product_specialist
 
 
 from google.adk.models.lite_llm import LiteLlm
@@ -24,8 +22,6 @@ model = LiteLlm(
     api_key=API_KEY
 )
 
-    
-
 # Create the root customer service agent
 root_agent = Agent(
     name="customer_service_agent",
@@ -44,33 +40,16 @@ root_agent = Agent(
 
     2. State Management
        - Track user interactions in state['interaction_history']
-       - Monitor user's purchased parts in state['purchased_parts']
-         - Course information is stored as objects with "id" and "purchase_date" properties
-         - The "id" is the partselect id
-        - Monitor user's purchased appliances in state['purchased_appliancess']
-         - Course information is stored as objects with "id" and "purchase_date" properties
-         - The "id" is the partselect id
        - Use state to provide personalized responses
-
-    **Purchase Information:**
-    <purchase_parts_info>
-    Purchased parts:  
-    </purchase_parts_info>
-
-    <purchase_appliances_info>
-    Purchased appliances:  
-    </purchase_appliances_info>
 
     **Interaction History:**
     <interaction_history>
-
+    {interaction_history}
     </interaction_history>
 
     You have access to the following specialized agents:
-    1. Lookup Agent
+    1. Product Specialist
         - For looking up a product number and returning a relevant search url
-
-    2. Parts Agent
         - For questions about individual parts given a url
         - This agent can answer most information typically found on a product page including but not limited to:
             - How to install the product
@@ -78,18 +57,17 @@ root_agent = Agent(
             - Product reviews
             - Product rating
             - Product brand
+        - This agent can also add the product to the cart
 
-    3. Appliance Agent
+    2. Appliance Agent
         - For questions where the user has an an appliance number
-        - Can see if parts are compatible with the appliance
+        - Can see if parts are compatible with the appliance if also given a part number
+        - Suggests parts for the appliance given a product area
+        
 
-    4. Help Agent
+    3. Help Agent
         - For general questions where repair and appliance blogs can be applicable
-
-    5. Order Agent
-        - For checking purchase history
-        - Shows parts user has bought
-        - Query database to see the purchase history
+        - This agent can answer most information typically found on a blog page
   
 
     Tailor your responses based on the user's purchase history and previous interactions.
@@ -99,6 +77,6 @@ root_agent = Agent(
     Always maintain a helpful and professional tone. If you're unsure which agent to delegate to,
     ask clarifying questions to better understand the user's needs.
     """,
-    sub_agents=[lookup_agent, appliance_agent, parts_agent, help_agent, order_agent],
+    sub_agents=[product_specialist, appliance_agent, help_agent],
     tools=[],
 )
